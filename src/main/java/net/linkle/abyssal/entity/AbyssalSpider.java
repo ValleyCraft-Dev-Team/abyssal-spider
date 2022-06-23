@@ -1,7 +1,11 @@
 package net.linkle.abyssal.entity;
 
+import net.linkle.abyssal.init.Entities;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -28,7 +32,8 @@ public class AbyssalSpider extends SpiderEntity {
                 }
 
                 if (this.random.nextInt(3) == 0) {
-                    // TODO: Switch to tamed spider
+                    var spider = convertTo(Entities.TAMED_ABYSSAL_SPIDER, false);
+                    spider.setOwner(player);
                     world.sendEntityStatus(this, EntityStatuses.ADD_POSITIVE_PLAYER_REACTION_PARTICLES);
                 } else {
                     world.sendEntityStatus(this, EntityStatuses.ADD_NEGATIVE_PLAYER_REACTION_PARTICLES);
@@ -39,5 +44,9 @@ public class AbyssalSpider extends SpiderEntity {
 
             return super.interactMob(player, hand);
         }
+    }
+    
+    public static DefaultAttributeContainer.Builder createSpiderAttributes() {
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3F);
     }
 }

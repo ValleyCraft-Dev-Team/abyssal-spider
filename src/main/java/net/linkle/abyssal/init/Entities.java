@@ -7,7 +7,9 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.linkle.abyssal.Main;
 import net.linkle.abyssal.client.entity.renderer.SpiderEntityRenderer;
+import net.linkle.abyssal.client.entity.renderer.TamedSpiderEntityRenderer;
 import net.linkle.abyssal.entity.AbyssalSpider;
+import net.linkle.abyssal.entity.TamedAbyssalSpider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -20,13 +22,19 @@ public class Entities {
             FabricEntityTypeBuilder.createMob().entityFactory(AbyssalSpider::new).spawnGroup(SpawnGroup.MONSTER)
             .dimensions(new EntityDimensions(1.4F, 0.9F, false)).fireImmune().trackRangeBlocks(8).build());
     
+    public static final EntityType<TamedAbyssalSpider> TAMED_ABYSSAL_SPIDER = register("tamed_abyssal_spider", 
+            FabricEntityTypeBuilder.createMob().entityFactory(TamedAbyssalSpider::new).spawnGroup(SpawnGroup.CREATURE)
+            .dimensions(new EntityDimensions(1.4F, 0.9F, false)).fireImmune().trackRangeBlocks(8).build());
+    
     public static void init() {
         FabricDefaultAttributeRegistry.register(ABYSSAL_SPIDER, AbyssalSpider.createSpiderAttributes());
+        FabricDefaultAttributeRegistry.register(TAMED_ABYSSAL_SPIDER, TamedAbyssalSpider.createAttributes());
     }
     
     @Environment(EnvType.CLIENT)
     public static void initClient() {
         EntityRendererRegistry.register(ABYSSAL_SPIDER, SpiderEntityRenderer.create("abyssal_spider_angry"));
+        EntityRendererRegistry.register(TAMED_ABYSSAL_SPIDER, TamedSpiderEntityRenderer::new);
     }
     
     private static <T extends Entity> EntityType<T> register(String id, EntityType<T> entity) {
