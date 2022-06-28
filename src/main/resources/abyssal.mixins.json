@@ -4,7 +4,7 @@
   "package": "net.linkle.abyssal.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-  
+    "ParrotEntityMixin"
   ],
   "client": [
   

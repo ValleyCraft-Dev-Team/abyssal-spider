@@ -92,6 +92,11 @@ public class TamedAbyssalSpider extends PathAwareEntity implements Tameable, Tam
     }
     
     @Override
+    public boolean occludeVibrationSignals() {
+        return true;
+    }
+    
+    @Override
     public double getMountedHeightOffset() {
         return (double)(this.getHeight() * 0.5F);
     }
@@ -99,6 +104,11 @@ public class TamedAbyssalSpider extends PathAwareEntity implements Tameable, Tam
     @Override
     protected EntityNavigation createNavigation(World world) {
         return new SpiderNavigation(this, world);
+    }
+    
+    @Override
+    public boolean shouldRender(double distance) {
+        return super.shouldRender(distance / 3.0);
     }
     
     @Override
