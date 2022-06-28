@@ -1,11 +1,11 @@
 package net.linkle.abyssal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.fabricmc.api.ModInitializer;
 import net.linkle.abyssal.init.Entities;
 import net.minecraft.util.Identifier;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Main implements ModInitializer {
 	public static final String ID = "abyssal_spider";

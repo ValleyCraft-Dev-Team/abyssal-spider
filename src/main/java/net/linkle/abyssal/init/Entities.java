@@ -28,12 +28,12 @@ public class Entities {
     
     public static final EntityType<AbyssalSpider> ABYSSAL_SPIDER = register("abyssal_spider", 
             FabricEntityTypeBuilder.createMob().entityFactory(AbyssalSpider::new).spawnGroup(SpawnGroup.MONSTER)
-            .dimensions(new EntityDimensions(1.4F, 0.9F, true)).fireImmune().trackRangeBlocks(8)
+            .dimensions(new EntityDimensions(1.4F, 0.9F, true)).fireImmune().trackRangeChunks(8)
             .spawnRestriction(Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark).build());
     
     public static final EntityType<TamedAbyssalSpider> TAMED_ABYSSAL_SPIDER = register("tamed_abyssal_spider", 
             FabricEntityTypeBuilder.createMob().entityFactory(TamedAbyssalSpider::new).spawnGroup(SpawnGroup.CREATURE)
-            .dimensions(new EntityDimensions(1.4F, 0.9F, true)).fireImmune().trackRangeBlocks(8).build());
+            .dimensions(new EntityDimensions(1.4F, 0.9F, true)).fireImmune().trackRangeChunks(8).build());
     
     public static void init() {
         initContents();
